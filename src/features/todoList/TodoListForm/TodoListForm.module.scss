@@ -4,3 +4,20 @@
   flex-direction: column;
   gap: 20px;
 }
+
+.filterWrap {
+  display: flex;
+  gap: 10px;
+}
+
+.controlPanelBtn {
+  width: 40px;
+  height: 40px;
+  padding: 5px;
+  background-color: darkslategrey;
+
+  & > img {
+    width: 30px;
+    height: 30px;
+  }
+}

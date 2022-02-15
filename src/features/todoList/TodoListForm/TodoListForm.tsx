@@ -1,4 +1,4 @@
-import { FC, useEffect } from 'react';
+import { FC, useEffect, ChangeEvent } from 'react';
 import { useAppDispatch, useAppSelector } from '../../../store/hooks';
 import { todoListSlice } from '../todoListSlice';
 
@@ -7,42 +7,45 @@ import { appSlice } from '../../../store/app';
 import { Paginator } from './Paginator';
 import styles from './TodoListForm.module.scss';
 import {
+  getFilteredTodoList,
   getNumberOfPages,
   getPaginatedTodoList,
   getTodoItemIndex,
 } from './helpers';
 import { TodoItemCard } from './TodoItemCard/TodoItemCard';
+import deleteImg from './assets/img/delete.svg';
 
 export const TodoListForm: FC = () => {
   const todoList = useAppSelector(todoListSlice.selectors.getTodoList);
   const dispatch = useAppDispatch();
   const currentPage = useAppSelector(todoListSlice.selectors.getCurrentPage);
+  const searchStr = useAppSelector(todoListSlice.selectors.getSearchStr);
 
-  useEffect(() => {
-    //это нужно что бы исключить ситуацию, когда мы на странице удаляем последний todo и
-    //получаем пустую страницу. Если такое произойдет то мы переключимся на последнюю страницу
-    if (todoList !== null) {
-      const numberOfPages = getNumberOfPages(todoList, numberOfItemsPerPage);
-      if (currentPage > numberOfPages) {
-        dispatch(todoListSlice.actions.setCurrentPage(numberOfPages));
-      }
-    }
-  }, [todoList]);
-
-  //если список todos с сервера мы не получили, то ничего не выводить
-  if (todoList === null) {
-    return null;
-  }
+  const filteredTodoList =
+    todoList === null ? [] : getFilteredTodoList(todoList, searchStr);
 
   const numberOfItemsPerPage = 5;
 
-  const numberOfPages = getNumberOfPages(todoList, numberOfItemsPerPage);
+  const numberOfPages = getNumberOfPages(
+    filteredTodoList,
+    numberOfItemsPerPage,
+  );
 
   const paginatedTodoList = getPaginatedTodoList(
-    todoList,
+    filteredTodoList,
     currentPage,
     numberOfItemsPerPage,
   );
+
+  useEffect(() => {
+    if (currentPage > numberOfPages) {
+      dispatch(
+        todoListSlice.actions.setCurrentPage(
+          numberOfPages === 0 ? 1 : numberOfPages,
+        ),
+      );
+    }
+  }, [paginatedTodoList]);
 
   const handleSetCurrentPage = (page: number) => {
     dispatch(todoListSlice.actions.setCurrentPage(page));
@@ -69,6 +72,15 @@ export const TodoListForm: FC = () => {
     dispatch(appSlice.actions.redirect(path));
   };
 
+  const handleSearchChange = (e: ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.value;
+    dispatch(todoListSlice.actions.setSearchStr(value));
+  };
+
+  const handleClearSearchStr = () => {
+    dispatch(todoListSlice.actions.setSearchStr(''));
+  };
+
   return (
     <div className={styles.wrap}>
       <div>
@@ -76,13 +88,32 @@ export const TodoListForm: FC = () => {
           Add new todo
         </button>
       </div>
+      <div>
+        <label>filter</label>
+        <div className={styles.filterWrap}>
+          <input
+            type="text"
+            placeholder={'Please input search text'}
+            onChange={handleSearchChange}
+            value={searchStr}
+          />
+          <button
+            type={'button'}
+            className={styles.controlPanelBtn}
+            onClick={handleClearSearchStr}
+          >
+            <img src={deleteImg} alt="Filter clear" />
+          </button>
+        </div>
+      </div>
       <div className="gap-20">
-        {todoList ? (
+        {paginatedTodoList ? (
           <div>
-            <span className="font-bold">number of todo:</span> {todoList.length}
+            <span className="font-bold">tasks found:</span>{' '}
+            {filteredTodoList.length}
           </div>
         ) : null}
-        {todoList
+        {paginatedTodoList
           ? paginatedTodoList.map((todoItem, index) => (
               <TodoItemCard
                 onToggleCompleted={handleToggleCompleted}
@@ -95,6 +126,7 @@ export const TodoListForm: FC = () => {
                 )}
                 onDelete={handleDelete}
                 onEdit={handleEdit}
+                searchStr={searchStr}
               />
             ))
           : null}

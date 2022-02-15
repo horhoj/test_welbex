@@ -10,6 +10,7 @@ interface InitialState {
   error: RequestError | null;
   todoList: TodoItem[] | null;
   currentPage: number;
+  searchStr: string;
 }
 
 const initialState: InitialState = {
@@ -17,6 +18,7 @@ const initialState: InitialState = {
   isLoading: false,
   todoList: null,
   currentPage: 1,
+  searchStr: '',
 };
 
 export const { actions, reducer } = createSlice({
@@ -70,6 +72,11 @@ export const { actions, reducer } = createSlice({
 
         state.todoList.push(newTodoItem);
       }
+    },
+
+    setSearchStr: (state, action: PayloadAction<string>) => {
+      state.currentPage = 1;
+      state.searchStr = action.payload;
     },
   },
   extraReducers: (builder) => {

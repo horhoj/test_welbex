@@ -25,3 +25,12 @@ export const getTodoItemIndex = (
   currentPage: number,
   numberOfItemsPerPage: number,
 ): number => index + 1 + (currentPage - 1) * numberOfItemsPerPage;
+
+export const getFilteredTodoList = (
+  todoList: TodoItem[],
+  searchStr: string,
+): TodoItem[] => {
+  return todoList.filter((todoItem) =>
+    todoItem.title.includes(searchStr.trim()),
+  );
+};

@@ -12,3 +12,6 @@ export const getTodoList = (state: RootState): TodoItem[] | null =>
 
 export const getCurrentPage = (state: RootState): number =>
   state.todoList.currentPage;
+
+export const getSearchStr = (state: RootState): string =>
+  state.todoList.searchStr;

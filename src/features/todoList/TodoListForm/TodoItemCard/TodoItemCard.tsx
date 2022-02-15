@@ -3,6 +3,7 @@ import { TodoItem } from '../../types';
 import editImg from '../assets/img/edit.svg';
 import deleteImg from '../assets/img/delete.svg';
 import styles from './TodoItemCard.module.scss';
+import { HighlightValue } from './HighlightValue';
 
 interface TodoItemCardProps {
   todoItem: TodoItem;
@@ -10,6 +11,7 @@ interface TodoItemCardProps {
   onToggleCompleted(id: number): void;
   onDelete(id: number): void;
   onEdit(id: number): void;
+  searchStr: string;
 }
 
 export const TodoItemCard: FC<TodoItemCardProps> = ({
@@ -18,9 +20,11 @@ export const TodoItemCard: FC<TodoItemCardProps> = ({
   onToggleCompleted,
   onDelete,
   onEdit,
+  searchStr,
 }) => {
   return (
     <div className={styles.wrap}>
+      {searchStr}
       <div className={styles.dataWrap}>
         <button
           type={'button'}
@@ -51,7 +55,9 @@ export const TodoItemCard: FC<TodoItemCardProps> = ({
         <span className="font-bold">№:</span> {index} (
         <span className="font-bold">ID:</span> {todoItem.id})
       </div>
-      <div>{todoItem.title}</div>
+      <div>
+        <HighlightValue value={todoItem.title} searchStr={searchStr} />
+      </div>
     </div>
   );
 };
