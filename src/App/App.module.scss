@@ -1,4 +1,21 @@
 .wrap {
-  margin: 100px auto 0;
+  margin: 10px auto;
+  padding: 20px;
   max-width: 1024px;
+  width: calc(100% - 20px);
+  background-color: #666;
+  min-height: calc(100vh - 20px);
+  color: #eee;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+
+.routesWrap {
+  display: flex;
+  flex-grow: 1;
+  height: 100%;
+  width: 100%;
 }

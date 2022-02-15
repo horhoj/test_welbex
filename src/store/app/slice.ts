@@ -1,12 +1,18 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { AppState } from './types';
+import { AppRedirectUrl, SLICE_NAME } from './types';
+
+interface AppState {
+  redirectUrl: AppRedirectUrl | null;
+  isAuthenticated: boolean;
+}
 
 const initialState: AppState = {
   redirectUrl: null,
+  isAuthenticated: false,
 };
 
-export const appSlice = createSlice({
-  name: 'app',
+export const { actions, reducer } = createSlice({
+  name: SLICE_NAME,
   initialState,
   reducers: {
     // в компоненте RedirectExecutor мы отслеживаем изменение
@@ -18,6 +24,10 @@ export const appSlice = createSlice({
       state.redirectUrl = {
         path: action.payload,
       };
+    },
+
+    setIsAuthenticated: (state, action: PayloadAction<boolean>) => {
+      state.isAuthenticated = action.payload;
     },
   },
 });

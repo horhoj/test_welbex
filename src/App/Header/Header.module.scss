@@ -1,0 +1,22 @@
+.wrap {
+  background-color: darkslategrey;
+  padding: 10px;
+  min-height: 70px;
+  border-radius: 10px 10px 0 0;
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  align-items: center;
+}
+
+.logo {
+  font-size: 40px;
+  font-weight: bold;
+}
+
+.nav {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
