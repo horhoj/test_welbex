@@ -31,6 +31,6 @@ export const getFilteredTodoList = (
   searchStr: string,
 ): TodoItem[] => {
   return todoList.filter((todoItem) =>
-    todoItem.title.includes(searchStr.trim()),
+    todoItem.title.toLowerCase().includes(searchStr.trim().toLowerCase()),
   );
 };

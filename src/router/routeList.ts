@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import { Home } from '../pages/Home';
+import { HomePage } from '../pages/HomePage';
 import { Page404 } from '../pages/Page404';
 import { TodoListPage } from '../pages/TodoListPage';
 import { TodoItemEditPage } from '../pages/TodoItemEditPage';
@@ -12,7 +12,7 @@ interface RouteItem {
 }
 
 export type Routes =
-  | 'Home'
+  | 'HomePage'
   | 'TodoListPage'
   | 'TodoItemEditPage'
   | 'TodoItemNewPage'
@@ -20,9 +20,9 @@ export type Routes =
 
 export const routeList: RouteItem[] = [
   {
-    name: 'Home',
+    name: 'HomePage',
     path: '/',
-    component: Home,
+    component: HomePage,
   },
 
   {

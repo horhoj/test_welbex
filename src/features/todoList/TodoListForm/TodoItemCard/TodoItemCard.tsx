@@ -24,7 +24,6 @@ export const TodoItemCard: FC<TodoItemCardProps> = ({
 }) => {
   return (
     <div className={styles.wrap}>
-      {searchStr}
       <div className={styles.dataWrap}>
         <button
           type={'button'}
