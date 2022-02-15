@@ -2,7 +2,7 @@
 *::before,
 *::after {
   font-family: Roboto, sans-serif;
-  font-size: 1.2rem;
+  font-size: 1rem;
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -14,8 +14,9 @@ body {
   color: #eeeeee;
 }
 
+
 button {
-  background-color: darkolivegreen;
+  background-color: darkslategrey;
   border: none;
   padding: 10px;
   color: #eee;
@@ -23,6 +24,7 @@ button {
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.4);
   border-radius: 5px;
   width: 100%;
+
 
   &:hover {
     box-shadow: 0 0 15px rgba(0, 255, 255, 0.4);
@@ -67,7 +69,6 @@ input, select {
   background-color: darkred;
   margin-top: 2px;
   border-radius: 5px;
-  font-size: 60%;
   font-weight: 500;
   padding: 5px;
   display: flex;
@@ -118,4 +119,5 @@ th, td {
   padding: 15px;
   //white-space: nowrap;
   font-size: 80%;
+  text-align: left;
 }

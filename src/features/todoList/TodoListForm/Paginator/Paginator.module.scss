@@ -1,0 +1,18 @@
+.wrap {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+  margin: auto;
+  max-width: 450px;
+  justify-content: center;
+}
+
+.btn {
+  max-width: 40px;
+  max-height: 40px;
+  font-size: 80%;
+}
+
+.btnActive {
+  background-color: seagreen;
+}

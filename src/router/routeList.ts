@@ -2,6 +2,8 @@ import { FC } from 'react';
 import { Home } from '../pages/Home';
 import { Page404 } from '../pages/Page404';
 import { TodoListPage } from '../pages/TodoListPage';
+import { TodoItemEditPage } from '../pages/TodoItemEditPage';
+import { TodoItemNewPage } from '../pages/TodoItemNewPage';
 
 interface RouteItem {
   name: Routes;
@@ -9,7 +11,12 @@ interface RouteItem {
   component: FC;
 }
 
-export type Routes = 'Home' | 'TodoListPage' | 'Page404';
+export type Routes =
+  | 'Home'
+  | 'TodoListPage'
+  | 'TodoItemEditPage'
+  | 'TodoItemNewPage'
+  | 'Page404';
 
 export const routeList: RouteItem[] = [
   {
@@ -22,6 +29,18 @@ export const routeList: RouteItem[] = [
     name: 'TodoListPage',
     path: '/todo-list',
     component: TodoListPage,
+  },
+
+  {
+    name: 'TodoItemEditPage',
+    path: '/todo-edit-item/:id',
+    component: TodoItemEditPage,
+  },
+
+  {
+    name: 'TodoItemNewPage',
+    path: '/todo-new-item',
+    component: TodoItemNewPage,
   },
 
   {

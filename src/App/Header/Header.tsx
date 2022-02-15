@@ -6,7 +6,6 @@ import styles from './Header.module.scss';
 export const Header: FC = () => {
   return (
     <div className={styles.wrap}>
-      <div className={styles.logo}>WELBEX</div>
       <nav className={styles.nav}>
         <NavLink to={getRoutePath('Home')}>Home</NavLink>
         <NavLink to={getRoutePath('TodoListPage')}>TodoList</NavLink>

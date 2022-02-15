@@ -1,0 +1,45 @@
+.wrap {
+  border: 1px solid #fff;
+  background-color: #665;
+  padding: 10px;
+  border-radius: 10px;
+  display: flex;
+  gap: 20px;
+  flex-direction: column;
+}
+
+.dataWrap {
+  display: flex;
+  justify-content: space-between;
+}
+
+.doneBtn {
+  background-color: seagreen;
+  width: 100px;
+}
+
+.notDoneBtn {
+  background-color: darkslategrey;
+  width: 100px;
+}
+
+.controlPanelWrap {
+  display: flex;
+
+  gap: 5px;
+  justify-content: center;
+  align-items: center;
+}
+
+.controlPanelBtn {
+  width: 40px;
+  height: 40px;
+  padding: 5px;
+  //background-color: rgba(0, 0, 0, 0);
+  background-color: darkslategrey;
+
+  & > img {
+    width: 30px;
+    height: 30px;
+  }
+}
